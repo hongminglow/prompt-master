@@ -11,12 +11,14 @@ type Variant = 'hero' | 'chapters'
 type Props = Omit<ComponentPropsWithoutRef<'div'>, 'children'> & {
   variant?: Variant
   controls?: OrbitArtifactControls
+  heroScrollProgress?: number
 }
 
 export function SceneCanvas({
   className,
   variant = 'hero',
   controls,
+  heroScrollProgress,
   ...divProps
 }: Props) {
   const camera =
@@ -47,7 +49,7 @@ export function SceneCanvas({
         <directionalLight position={[3.5, 2.2, 4]} intensity={1.25} />
         <directionalLight position={[-3.2, -2.1, 2]} intensity={0.6} />
         <pointLight position={[0, 1.2, 2.3]} intensity={1.3} />
-        <OrbitArtifact controls={merged} />
+        <OrbitArtifact controls={merged} heroScrollProgress={heroScrollProgress} />
       </Canvas>
     </div>
   )
